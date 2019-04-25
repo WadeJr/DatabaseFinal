@@ -21,9 +21,9 @@ namespace Recipes
             {
                 Response.Redirect("Default.aspx");
             }
-
-            QueryCheck();
             rid = Request.QueryString["rid"];
+            QueryCheck();
+            
 
 
             DataTable dt = Functions.HttpRequest_To_DataTable("recipes/byrid/" + rid, "get");
@@ -67,7 +67,7 @@ namespace Recipes
             string iid = Request.QueryString["iid"];
             if (iid != null || iid != "")
             {
-                Functions.HttpRequest_To_DataTable("recipe/add/ingredient/" + rid + "/" + iid + "/", "post");
+                Functions.HttpRequest_To_DataTable("recipe/add/ingredientbyiid/" + rid + "/" + iid , "post");
             }
         }
 

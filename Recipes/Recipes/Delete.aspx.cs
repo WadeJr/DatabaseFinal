@@ -15,9 +15,12 @@ namespace Recipes
         {
             if (!Functions.loggedIn)
             {
-                //Response.Redirect("Default.aspx");
+                Response.Redirect("Default.aspx");
             }
-            QueryCheck();
+            if (Functions.admin)
+            {
+                QueryCheck();
+            }
 
             DataTable dataTable = Functions.HttpRequest_To_DataTable("recipes", "get");
             GridView1.DataSource = dataTable;

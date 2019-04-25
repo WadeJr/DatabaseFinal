@@ -5,6 +5,8 @@
     <div class="jumbotron">
         <h1>Favorites</h1>
         <p class="lead">&nbsp;</p>
+         <h4>Click rid to view ingredients for recipe</h4>
+        <h4>Click on ingredient name to remove from favorites</h4>
 
         <p>&nbsp;</p>
     </div>

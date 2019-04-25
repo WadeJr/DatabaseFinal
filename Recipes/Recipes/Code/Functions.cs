@@ -20,7 +20,39 @@ namespace Recipes.Code
         public static string username { get; set; }
 
 
-        ////////////////////////Just need to get the status of user here
+        //Get the status of user
+        public static bool isAdmin(string userName)
+        {
+            string shortUrl = "user/status/" + userName;
+            string url = ApiCall(shortUrl);
+            WebRequest request = WebRequest.Create(url);
+            //Set Method 
+            request.Method = "get";
+
+            string rights = "";
+
+
+            try
+            {
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                rights = response.StatusCode.ToString();
+
+            }
+            catch (WebException we)
+            {
+                rights = ((HttpWebResponse)we.Response).StatusCode.ToString();
+
+            }
+
+
+            if (rights == "OK")
+            {
+                return true;
+            }
+            return false;
+        }
+
         //Log in
         public static bool Authenticate(string userName, string password)
         {
@@ -31,6 +63,7 @@ namespace Recipes.Code
             request.Method = "get";
 
             string code = "";
+            
         
 
             try
@@ -52,6 +85,14 @@ namespace Recipes.Code
             {
                 loggedIn = true;
                 username = userName;
+                if(isAdmin(username))
+                {
+                    admin = true;
+                }
+                else
+                {
+                    admin = false;
+                }
                 return true;
             }
             return false;
